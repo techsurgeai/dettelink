@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import AppLayout from "../../components/AppLayout";
+import { getStoredAuth, isB2BMemberRole, isLeadArrangerRole } from "../../lib/auth";
 
 export default function Dashboard() {
   const router = useRouter();
@@ -13,14 +14,18 @@ export default function Dashboard() {
   const profileCompletion = 40; // Static for now, can be calculated from API
 
   useEffect(() => {
-    const token = localStorage.getItem("dl_token");
-    if (token) {
-      try {
-        const payload = JSON.parse(atob(token.split(".")[1]));
+    const { payload, role } = getStoredAuth();
+    if (isLeadArrangerRole(role)) {
+      router.replace("/dashboard/lead-arranger/");
+      return;
+    }
+    if (isB2BMemberRole(role)) {
+      router.replace("/dashboard/b2b-member/");
+      return;
+    }
+
+    if (payload) {
         setUserName(payload.fullName?.split(" ")[0] || payload.email?.split("@")[0] || "Alex");
-      } catch {
-        // ignore
-      }
     }
 
     const hour = new Date().getHours();
@@ -34,7 +39,7 @@ export default function Dashboard() {
     if (!profileComplete && !popupDismissed) {
       setShowProfilePopup(true);
     }
-  }, []);
+  }, [router]);
 
   const handleClosePopup = () => {
     setShowProfilePopup(false);

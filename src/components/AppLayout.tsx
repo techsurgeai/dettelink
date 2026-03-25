@@ -3,8 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { getDashboardPathForRole, getLoginPathForRole, getRoleLabel, getStoredAuth, isB2BMemberRole } from "../lib/auth";
 
-const navItems = [
+const memberNavItems = [
   { href: "/dashboard/", label: "Dashboard", icon: "dashboard" },
   { href: "/profile/", label: "My Profile", icon: "profile" },
   { href: "/ai-analysis/", label: "AI Analysis & Reports", icon: "ai" },
@@ -13,6 +14,33 @@ const navItems = [
   { href: "/documents/", label: "Documents", icon: "documents" },
   { href: "/messages/", label: "Messages", icon: "messages" },
   { href: "/notifications/", label: "Notifications", icon: "notifications" },
+  { href: "/settings/", label: "Settings", icon: "settings" },
+];
+
+const leadArrangerNavItems = [
+  { href: "/dashboard/lead-arranger/", label: "Dashboard", icon: "dashboard" },
+  { href: "/dashboard/lead-arranger/profile/", label: "Profile", icon: "profile" },
+  { href: "/deals/", label: "Deal Pipeline", icon: "briefcase" },
+  { href: "/dashboard/lead-arranger/teasers/", label: "Teaser Library", icon: "document" },
+  { href: "/teasers/new/", label: "Create Teaser", icon: "document" },
+  { href: "/dashboard/lead-arranger/placements/", label: "Placement Tracker", icon: "transactions" },
+  { href: "/dashboard/lead-arranger/recipient-selection/", label: "Recipients", icon: "users" },
+  { href: "/dashboard/lead-arranger/deal-detail/", label: "Deal Detail", icon: "shield" },
+  { href: "/dashboard/lead-arranger/compliance/", label: "Compliance", icon: "shield" },
+  { href: "/dashboard/lead-arranger/documents/", label: "Document Room", icon: "documents" },
+  { href: "/dashboard/lead-arranger/messages/", label: "Messages", icon: "messages" },
+  { href: "/dashboard/lead-arranger/notifications/", label: "Notifications", icon: "notifications" },
+  { href: "/dashboard/lead-arranger/settings/", label: "Settings", icon: "settings" },
+];
+
+const b2bMemberNavItems = [
+  { href: "/dashboard/b2b-member/", label: "Dashboard", icon: "dashboard" },
+  { href: "/dashboard/b2b-member/opportunities/", label: "My Opportunities", icon: "briefcase" },
+  { href: "/dashboard/b2b-member/teasers/", label: "Teaser Inbox", icon: "document" },
+  { href: "/dashboard/b2b-member/nda/", label: "NDA / Pending Actions", icon: "shield" },
+  { href: "/dashboard/b2b-member/data-rooms/", label: "Data Rooms", icon: "documents" },
+  { href: "/dashboard/b2b-member/deal-messages/", label: "Deal Messages", icon: "messages" },
+  { href: "/profile/", label: "Profile", icon: "profile" },
   { href: "/settings/", label: "Settings", icon: "settings" },
 ];
 
@@ -29,6 +57,30 @@ const icons: Record<string, JSX.Element> = {
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
       <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
       <circle cx="12" cy="7" r="4" />
+    </svg>
+  ),
+  briefcase: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M8 7V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V7" />
+      <rect x="3" y="7" width="18" height="13" rx="2.5" />
+      <path d="M3 12.5h18" />
+      <path d="M10 12.5v2h4v-2" />
+    </svg>
+  ),
+  document: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+      <path d="M14 3v5h5" />
+      <path d="M9 13h6" />
+      <path d="M9 17h6" />
+    </svg>
+  ),
+  users: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M16 21v-1.5A3.5 3.5 0 0 0 12.5 16H7.5A3.5 3.5 0 0 0 4 19.5V21" />
+      <circle cx="10" cy="9" r="3" />
+      <path d="M20 21v-1a3 3 0 0 0-2.2-2.9" />
+      <path d="M15.5 6.2a3 3 0 0 1 0 5.6" />
     </svg>
   ),
   ai: (
@@ -77,6 +129,12 @@ const icons: Record<string, JSX.Element> = {
       <path d="M13.73 21a2 2 0 0 1-3.46 0" />
     </svg>
   ),
+  shield: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M12 3l7 3v5c0 4.5-2.9 8.6-7 10-4.1-1.4-7-5.5-7-10V6l7-3z" />
+      <path d="M9.5 12.5l1.8 1.8 3.7-4.1" />
+    </svg>
+  ),
   help: (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
       <circle cx="12" cy="12" r="10" />
@@ -118,24 +176,51 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   ];
 
   useEffect(() => {
-    const token = localStorage.getItem("dl_token");
-    if (token) {
-      try {
-        const payload = JSON.parse(atob(token.split(".")[1]));
+    const { payload, role } = getStoredAuth();
+    if (payload) {
         setUser({
           name: payload.fullName || payload.email?.split("@")[0] || "User",
           email: payload.email || "",
-          role: payload.role || "member"
+          role: role || "member"
         });
-      } catch {
-        setUser(null);
-      }
+    } else {
+      setUser(null);
     }
   }, []);
 
   const handleLogout = () => {
+    const { role } = getStoredAuth();
     localStorage.removeItem("dl_token");
-    window.location.href = "/login/";
+    window.location.href = getLoginPathForRole(role);
+  };
+
+  const isLeadArrangerView =
+    pathname.startsWith("/dashboard/lead-arranger") ||
+    pathname.startsWith("/deals") ||
+    pathname.startsWith("/deal") ||
+    pathname.startsWith("/placements") ||
+    pathname.startsWith("/teasers/new");
+
+  const isB2BMemberView = pathname.startsWith("/dashboard/b2b-member") || isB2BMemberRole(user?.role);
+
+  const activeNavItems = isLeadArrangerView
+    ? leadArrangerNavItems
+    : isB2BMemberView
+      ? b2bMemberNavItems
+      : memberNavItems;
+
+  const navItems = activeNavItems.map((item) =>
+    item.icon === "dashboard"
+      ? { ...item, href: getDashboardPathForRole(isLeadArrangerView ? "lead_arranger" : user?.role) }
+      : item
+  );
+
+  const isNavItemActive = (href: string) => {
+    const normalizedPath = pathname.endsWith("/") && pathname !== "/" ? pathname.slice(0, -1) : pathname;
+    const normalizedHref = href.endsWith("/") && href !== "/" ? href.slice(0, -1) : href;
+
+    if (normalizedHref === "/dashboard") return normalizedPath === normalizedHref;
+    return normalizedPath === normalizedHref || normalizedPath.startsWith(`${normalizedHref}/`);
   };
 
   return (
@@ -153,7 +238,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             <Link
               key={item.href}
               href={item.href}
-              className={`sidebar-nav-item ${pathname === item.href ? "active" : ""}`}
+              className={`sidebar-nav-item ${isNavItemActive(item.href) ? "active" : ""}`}
             >
               <span className="sidebar-nav-icon">{icons[item.icon]}</span>
               <span className="sidebar-nav-label">{item.label}</span>
@@ -176,7 +261,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           </div>
           <div className="header-right">
             {/* Message Icon */}
-            <Link href="/messages/" className="header-icon-btn">
+            <Link
+              href={isLeadArrangerView ? "/dashboard/lead-arranger/messages/" : isB2BMemberView ? "/dashboard/b2b-member/deal-messages/" : "/messages/"}
+              className="header-icon-btn"
+            >
               {icons.messages}
             </Link>
 
@@ -208,7 +296,11 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                       </div>
                     ))}
                   </div>
-                  <Link href="/notifications/" className="notification-dropdown-footer" onClick={() => setShowNotifications(false)}>
+                  <Link
+                    href={isLeadArrangerView ? "/dashboard/lead-arranger/notifications/" : "/notifications/"}
+                    className="notification-dropdown-footer"
+                    onClick={() => setShowNotifications(false)}
+                  >
                     View all notifications
                   </Link>
                 </div>
@@ -219,7 +311,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             {user && (
               <div className="header-user-wrapper">
                 <button
-                  className="header-user"
+                    className="header-user"
                   onClick={() => setShowUserMenu(!showUserMenu)}
                 >
                   <img
@@ -229,7 +321,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                   />
                   <div className="header-user-info">
                     <span className="header-user-name">{user.name}</span>
-                    <span className="header-user-role">B2C Client</span>
+                    <span className="header-user-role">{getRoleLabel(user.role)}</span>
                   </div>
                   <svg className="header-user-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <polyline points="6,9 12,15 18,9" />
@@ -238,11 +330,15 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
                 {showUserMenu && (
                   <div className="header-user-dropdown-menu">
-                    <Link href="/profile/" className="user-menu-item" onClick={() => setShowUserMenu(false)}>
+                    <Link href={isLeadArrangerView ? "/dashboard/lead-arranger/profile/" : "/profile/"} className="user-menu-item" onClick={() => setShowUserMenu(false)}>
                       <span className="user-menu-icon">{icons.profile}</span>
                       My Profile
                     </Link>
-                    <Link href="/settings/" className="user-menu-item" onClick={() => setShowUserMenu(false)}>
+                    <Link
+                      href={isLeadArrangerView ? "/dashboard/lead-arranger/settings/" : "/settings/"}
+                      className="user-menu-item"
+                      onClick={() => setShowUserMenu(false)}
+                    >
                       <span className="user-menu-icon">{icons.settings}</span>
                       Settings
                     </Link>

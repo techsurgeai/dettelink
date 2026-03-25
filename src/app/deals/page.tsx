@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import AppLayout from "../../components/AppLayout";
 import { apiFetch } from "../../lib/api";
 
@@ -17,6 +18,65 @@ type Deal = {
     documents: number;
   };
 };
+
+const dummyDeals: Deal[] = [
+  {
+    id: "atlas-logistics-growth-facility",
+    title: "Atlas Logistics Growth Facility",
+    sector: "Logistics",
+    geo: "UAE",
+    stage: "teaser",
+    overview:
+      "Senior secured growth facility for a regional warehousing and fulfillment platform expanding across GCC corridors.",
+    createdAt: "2026-03-18T08:00:00.000Z",
+    _count: {
+      teasers: 2,
+      documents: 6,
+    },
+  },
+  {
+    id: "northbridge-consumer-receivables",
+    title: "Northbridge Consumer Receivables",
+    sector: "Consumer Finance",
+    geo: "Saudi Arabia",
+    stage: "nda",
+    overview:
+      "Receivables-backed financing mandate structured for institutional lenders seeking short-duration yield exposure.",
+    createdAt: "2026-03-18T08:15:00.000Z",
+    _count: {
+      teasers: 1,
+      documents: 9,
+    },
+  },
+  {
+    id: "falcon-energy-refinancing",
+    title: "Falcon Energy Refinancing",
+    sector: "Energy Infrastructure",
+    geo: "UAE",
+    stage: "dataroom",
+    overview:
+      "Refinancing process for an operating energy platform with contracted cash flows and active lender engagement.",
+    createdAt: "2026-03-18T08:30:00.000Z",
+    _count: {
+      teasers: 3,
+      documents: 14,
+    },
+  },
+  {
+    id: "meridian-industrial-bridge",
+    title: "Meridian Industrial Bridge",
+    sector: "Industrials",
+    geo: "UK",
+    stage: "closing",
+    overview:
+      "Bridge facility nearing closing for a sponsor-backed industrial carve-out with cross-border distribution support.",
+    createdAt: "2026-03-18T08:45:00.000Z",
+    _count: {
+      teasers: 1,
+      documents: 11,
+    },
+  },
+];
 
 const stageColors: Record<string, string> = {
   teaser: "var(--blue)",
@@ -35,7 +95,8 @@ export default function DealsPage() {
     apiFetch("/deals")
       .then(async (res) => {
         if (res.status === 401) {
-          setStatus("auth");
+          setDeals(dummyDeals);
+          setStatus("idle");
           return null;
         }
         if (!res.ok) {
@@ -60,27 +121,30 @@ export default function DealsPage() {
 
   return (
     <AppLayout>
-      <div className="page-header">
+      <div className="page-header deals-page-header">
         <div>
+          <Link href="/dashboard/lead-arranger" className="teaser-back-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+            Back to Lead Arranger Dashboard
+          </Link>
           <h1 className="page-title">Deal Pipeline</h1>
           <p className="page-subtitle">
             Browse and manage investment opportunities
+          </p>
+          <p className="deals-last-updated">
+            Last Updated: {new Date().toLocaleDateString("en-GB", {
+              day: "2-digit",
+              month: "short",
+              year: "numeric"
+            })}
           </p>
         </div>
       </div>
 
       {status === "loading" && (
         <div className="loading-spinner" style={{ margin: "2rem auto" }} />
-      )}
-
-      {status === "auth" && (
-        <div className="glass-card" style={{ textAlign: "center", padding: "3rem" }}>
-          <h3>Authentication Required</h3>
-          <p style={{ color: "var(--text-secondary)", marginBottom: "1.5rem" }}>
-            Sign in with an active subscription to access deal rooms.
-          </p>
-          <a href="/login/" className="btn btn-primary">Sign In</a>
-        </div>
       )}
 
       {status === "error" && (
@@ -94,13 +158,12 @@ export default function DealsPage() {
 
       {status === "idle" && (
         <>
-          <div className="filter-tabs" style={{ marginBottom: "1.5rem", display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+          <div className="deals-filter-tabs">
             {stages.map(stage => (
               <button
                 key={stage}
-                className={`btn ${filter === stage ? "btn-primary" : "btn-secondary"}`}
+                className={`deals-filter-tab ${filter === stage ? "active" : ""}`}
                 onClick={() => setFilter(stage)}
-                style={{ textTransform: "capitalize", fontSize: "0.875rem" }}
               >
                 {stage === "all" ? "All Deals" : stage}
               </button>
@@ -117,82 +180,40 @@ export default function DealsPage() {
               </p>
             </div>
           ) : (
-            <div className="deals-grid" style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))",
-              gap: "1.5rem"
-            }}>
+            <div className="deals-grid">
               {filteredDeals.map((deal) => (
-                <article key={deal.id} className="glass-card deal-card" style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  overflow: "hidden"
-                }}>
-                  <div style={{
-                    padding: "1.25rem 1.5rem",
-                    borderBottom: "1px solid var(--border-color)",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "flex-start"
-                  }}>
+                <article key={deal.id} className="glass-card deal-card deals-card">
+                  <div className="deals-card-head">
                     <div>
-                      <h3 style={{
-                        fontSize: "1.125rem",
-                        fontWeight: 600,
-                        marginBottom: "0.25rem",
-                        color: "var(--text-primary)"
-                      }}>
+                      <h3 className="deals-card-title">
                         {deal.title}
                       </h3>
-                      <p style={{
-                        fontSize: "0.875rem",
-                        color: "var(--text-secondary)"
-                      }}>
+                      <p className="deals-card-meta">
                         {deal.sector} &bull; {deal.geo}
                       </p>
                     </div>
-                    <span className="badge" style={{
-                      padding: "0.25rem 0.75rem",
-                      borderRadius: "9999px",
-                      fontSize: "0.75rem",
-                      fontWeight: 600,
-                      textTransform: "uppercase",
-                      background: `${stageColors[deal.stage] || "var(--primary)"}20`,
-                      color: stageColors[deal.stage] || "var(--primary)"
+                    <span className="badge deals-stage-badge" style={{
+                      background: `${stageColors[deal.stage] || "#549780"}18`,
+                      color: stageColors[deal.stage] || "#549780"
                     }}>
                       {deal.stage}
                     </span>
                   </div>
 
-                  <div style={{ padding: "1.25rem 1.5rem", flex: 1 }}>
-                    <p style={{
-                      fontSize: "0.875rem",
-                      color: "var(--text-secondary)",
-                      lineHeight: 1.6,
-                      display: "-webkit-box",
-                      WebkitLineClamp: 3,
-                      WebkitBoxOrient: "vertical",
-                      overflow: "hidden"
-                    }}>
+                  <div className="deals-card-body">
+                    <p className="deals-card-overview">
                       {deal.overview}
                     </p>
                   </div>
 
-                  <div style={{
-                    padding: "1rem 1.5rem",
-                    borderTop: "1px solid var(--border-color)",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center"
-                  }}>
-                    <div style={{ display: "flex", gap: "1rem", fontSize: "0.75rem", color: "var(--text-muted)" }}>
+                  <div className="deals-card-footer">
+                    <div className="deals-card-stats">
                       <span>{deal._count?.teasers || 0} teasers</span>
                       <span>{deal._count?.documents || 0} docs</span>
                     </div>
                     <a
-                      href={`/deal/?id=${deal.id}`}
-                      className="btn btn-primary"
-                      style={{ fontSize: "0.875rem", padding: "0.5rem 1rem" }}
+                      href={`/dashboard/lead-arranger/deal-detail/?id=${deal.id}`}
+                      className="btn deals-card-btn"
                     >
                       View Deal
                     </a>

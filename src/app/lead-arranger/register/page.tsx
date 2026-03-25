@@ -4,12 +4,12 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function Register() {
+export default function LeadArrangerRegisterPage() {
   const router = useRouter();
   const [formData, setFormData] = useState({
-    businessName: "",
+    firmName: "",
+    fullName: "",
     email: "",
-    role: "",
     country: "",
     password: "",
   });
@@ -29,9 +29,9 @@ export default function Register() {
         body: JSON.stringify({
           email: formData.email,
           password: formData.password,
-          fullName: formData.email.split("@")[0],
-          firm: formData.businessName,
-          role: formData.role,
+          fullName: formData.fullName,
+          firm: formData.firmName,
+          role: "lead_arranger",
           country: formData.country,
         }),
       });
@@ -39,7 +39,9 @@ export default function Register() {
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.message || "Registration failed");
+        throw new Error(
+          Array.isArray(data.message) ? data.message.join(", ") : data.message || "Registration failed"
+        );
       }
 
       router.push("/verify-email?email=" + encodeURIComponent(formData.email));
@@ -52,47 +54,61 @@ export default function Register() {
 
   return (
     <div className="auth-split-container">
-      {/* Left Side - Chart Background */}
       <div className="auth-split-image">
         <img src="/images/chart-bg.jpg" alt="Financial Chart" className="auth-bg-img" />
       </div>
 
-      {/* Right Side - Form */}
       <div className="auth-split-form">
         <div className="auth-form-wrapper">
-          {/* Logo */}
           <div className="auth-brand">
             <img src="/images/logo.png" alt="Dettelinks" className="auth-brand-logo-img" />
           </div>
 
-          {/* Header */}
           <div className="auth-header">
-            <h1 className="auth-title">Sign up</h1>
-            <p className="auth-subtitle">Please login to your account to continue</p>
+            <h1 className="auth-title">Lead Arranger Sign Up</h1>
+            <p className="auth-subtitle">Create your lead arranger account to access mandate, teaser, and recipient workflows.</p>
           </div>
 
-          {/* Form */}
           <form className="auth-form" onSubmit={handleSubmit}>
-            {error && <div className="form-error" style={{ marginBottom: "16px", padding: "12px", background: "#fef2f2", borderRadius: "8px", color: "#dc2626" }}>{error}</div>}
+            {error ? (
+              <div
+                className="form-error"
+                style={{ marginBottom: "16px", padding: "12px", background: "#fef2f2", borderRadius: "8px", color: "#dc2626" }}
+              >
+                {error}
+              </div>
+            ) : null}
 
             <div className="form-group">
-              <label className="form-label">Business Name</label>
+              <label className="form-label">Firm Name</label>
               <input
                 type="text"
                 className="form-input"
-                placeholder="Enter Business Name"
-                value={formData.businessName}
-                onChange={(e) => setFormData({ ...formData, businessName: e.target.value })}
+                placeholder="Enter Firm Name"
+                value={formData.firmName}
+                onChange={(e) => setFormData({ ...formData, firmName: e.target.value })}
                 required
               />
             </div>
 
             <div className="form-group">
-              <label className="form-label">Email</label>
+              <label className="form-label">Full Name</label>
+              <input
+                type="text"
+                className="form-input"
+                placeholder="Enter Full Name"
+                value={formData.fullName}
+                onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">Work Email</label>
               <input
                 type="email"
                 className="form-input"
-                placeholder="johndoe@gmail.com"
+                placeholder="name@firm.com"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 required
@@ -101,20 +117,7 @@ export default function Register() {
 
             <div className="form-group">
               <label className="form-label">Role</label>
-              <select
-                className="form-input"
-                value={formData.role}
-                onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                required
-              >
-                <option value="">Select Role</option>
-                <option value="founder">Founder / CEO</option>
-                <option value="cfo">CFO / Finance Director</option>
-                <option value="investor">Investor</option>
-                <option value="advisor">Advisor</option>
-                <option value="lead_arranger">Lead Arranger</option>
-                <option value="other">Other</option>
-              </select>
+              <input type="text" className="form-input" value="Lead Arranger" readOnly />
             </div>
 
             <div className="form-group">
@@ -150,13 +153,21 @@ export default function Register() {
             </div>
 
             <button type="submit" className="btn btn-primary btn-full" disabled={loading}>
-              {loading ? "Creating Account..." : "Register Now"}
+              {loading ? "Creating Account..." : "Register as Lead Arranger"}
             </button>
           </form>
 
-          {/* Footer */}
           <div className="auth-footer">
-            Already have an account? <Link href="/login" className="auth-link">Log In</Link>
+            Already have a lead arranger account?{" "}
+            <Link href="/lead-arranger/login/" className="auth-link">
+              Log In
+            </Link>
+          </div>
+
+          <div className="auth-extra">
+            <Link href="/register/" className="auth-link-subtle">
+              Go to Client Sign Up
+            </Link>
           </div>
         </div>
       </div>
