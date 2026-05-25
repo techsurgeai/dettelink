@@ -199,7 +199,14 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
   const handleLogout = () => {
     const { role } = getStoredAuth();
-    localStorage.removeItem("dl_token");
+    Object.keys(localStorage)
+      .filter((key) => key.startsWith("dl_"))
+      .forEach((key) => localStorage.removeItem(key));
+
+    Object.keys(sessionStorage)
+      .filter((key) => key.startsWith("dl_"))
+      .forEach((key) => sessionStorage.removeItem(key));
+
     window.location.href = getLoginPathForRole(role);
   };
 

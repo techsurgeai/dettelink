@@ -1,12 +1,14 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import AppLayout from "../../components/AppLayout";
 import { initialFormData, memberFundingRequirementSteps, renderField } from "../../components/RoleProfilePage";
 
 const fundingRequirementSteps = memberFundingRequirementSteps;
 
 export default function FundingRequirementsPage() {
+  const router = useRouter();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<Record<string, string>>(initialFormData);
 
@@ -22,6 +24,7 @@ export default function FundingRequirementsPage() {
     localStorage.setItem("dl_funding_requirements", JSON.stringify(formData));
     localStorage.setItem("dl_funding_requirements_complete", "true");
     alert("Funding requirements saved successfully!");
+    router.push("/dashboard/");
   };
 
   const handleBack = () => {

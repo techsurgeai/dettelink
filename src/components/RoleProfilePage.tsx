@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import AppLayout from "./AppLayout";
 import { getStoredAuth } from "../lib/auth";
 
@@ -541,6 +542,7 @@ export function renderField(
 }
 
 export default function RoleProfilePage({ mode }: { mode: ProfileMode }) {
+  const router = useRouter();
   const [step, setStep] = useState(1);
   const [isProfileSaved, setIsProfileSaved] = useState(false);
   const [formData, setFormData] = useState<Record<string, string>>(initialFormData);
@@ -588,6 +590,9 @@ export default function RoleProfilePage({ mode }: { mode: ProfileMode }) {
     setIsProfileSaved(true);
     localStorage.setItem(completionKey, "true");
     sessionStorage.removeItem(popupDismissKey);
+    if (!isLeadArranger) {
+      router.push("/funding-requirements/");
+    }
   };
 
   const handleEditProfile = () => {
