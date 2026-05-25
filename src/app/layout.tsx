@@ -1,4 +1,4 @@
-import "./globals.css";
+
 
 export const metadata = {
   title: "Dettelinks - Corporate Finance Platform",
@@ -23,4 +23,8 @@ export default function RootLayout({
       <body>{children}</body>
     </html>
   );
+
+
+
+  
 }
