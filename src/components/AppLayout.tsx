@@ -3,9 +3,22 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { getDashboardPathForRole, getLoginPathForRole, getRoleLabel, getStoredAuth, isB2BMemberRole } from "../lib/auth";
+import {
+  getDashboardPathForRole,
+  getLoginPathForRole,
+  getRoleLabel,
+  getStoredAuth,
+  isB2BMemberRole,
+} from "../lib/auth";
 
-const memberNavItems = [
+type NavItem = {
+  href: string;
+  label: string;
+  icon: string;
+  disabled?: boolean;
+};
+
+const memberNavItems: NavItem[] = [
   { href: "/dashboard/", label: "Dashboard", icon: "dashboard" },
   { href: "/bank-integration/", label: "Bank Integration", icon: "financing", disabled: true },
   { href: "/funding-requirements/", label: "Funding Requirements", icon: "financing" },
@@ -19,7 +32,7 @@ const memberNavItems = [
   { href: "/settings/", label: "Settings", icon: "settings" },
 ];
 
-const leadArrangerNavItems = [
+const leadArrangerNavItems: NavItem[] = [
   { href: "/dashboard/lead-arranger/", label: "Dashboard", icon: "dashboard" },
   { href: "/dashboard/lead-arranger/profile/", label: "Profile", icon: "profile" },
   { href: "/deals/", label: "Deal Pipeline", icon: "briefcase" },
@@ -35,7 +48,7 @@ const leadArrangerNavItems = [
   { href: "/dashboard/lead-arranger/settings/", label: "Settings", icon: "settings" },
 ];
 
-const b2bMemberNavItems = [
+const b2bMemberNavItems: NavItem[] = [
   { href: "/dashboard/b2b-member/", label: "Dashboard", icon: "dashboard" },
   { href: "/dashboard/b2b-member/opportunities/", label: "My Opportunities", icon: "briefcase" },
   { href: "/dashboard/b2b-member/teasers/", label: "Teaser Inbox", icon: "document" },
@@ -172,19 +185,38 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   const [showUserMenu, setShowUserMenu] = useState(false);
 
   const headerNotifications = [
-    { id: 1, avatar: "https://randomuser.me/api/portraits/men/32.jpg", title: "AI Financial Risk Assessment is ready to view", time: "about an hour ago", unread: true },
-    { id: 2, avatar: "https://randomuser.me/api/portraits/women/44.jpg", title: "Advisory Session Scheduled with Sarah Blake", time: "about an hour ago", unread: true },
-    { id: 3, avatar: "https://randomuser.me/api/portraits/women/65.jpg", title: "Your Tax Documents 2023.pdf downloaded", time: "2 hours ago", unread: false },
+    {
+      id: 1,
+      avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+      title: "AI Financial Risk Assessment is ready to view",
+      time: "about an hour ago",
+      unread: true,
+    },
+    {
+      id: 2,
+      avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+      title: "Advisory Session Scheduled with Sarah Blake",
+      time: "about an hour ago",
+      unread: true,
+    },
+    {
+      id: 3,
+      avatar: "https://randomuser.me/api/portraits/women/65.jpg",
+      title: "Your Tax Documents 2023.pdf downloaded",
+      time: "2 hours ago",
+      unread: false,
+    },
   ];
 
   useEffect(() => {
     const { payload, role } = getStoredAuth();
+
     if (payload) {
-        setUser({
-          name: payload.fullName || payload.email?.split("@")[0] || "User",
-          email: payload.email || "",
-          role: role || "member"
-        });
+      setUser({
+        name: payload.fullName || payload.email?.split("@")[0] || "User",
+        email: payload.email || "",
+        role: role || "member",
+      });
     } else {
       setUser(null);
     }
@@ -205,15 +237,18 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
   const isB2BMemberView = pathname.startsWith("/dashboard/b2b-member") || isB2BMemberRole(user?.role);
 
-  const activeNavItems = isLeadArrangerView
+  const activeNavItems: NavItem[] = isLeadArrangerView
     ? leadArrangerNavItems
     : isB2BMemberView
       ? b2bMemberNavItems
       : memberNavItems;
 
-  const navItems = activeNavItems.map((item) =>
+  const navItems: NavItem[] = activeNavItems.map((item) =>
     item.icon === "dashboard"
-      ? { ...item, href: getDashboardPathForRole(isLeadArrangerView ? "lead_arranger" : user?.role) }
+      ? {
+          ...item,
+          href: getDashboardPathForRole(isLeadArrangerView ? "lead_arranger" : user?.role),
+        }
       : item
   );
 
@@ -222,12 +257,12 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     const normalizedHref = href.endsWith("/") && href !== "/" ? href.slice(0, -1) : href;
 
     if (normalizedHref === "/dashboard") return normalizedPath === normalizedHref;
+
     return normalizedPath === normalizedHref || normalizedPath.startsWith(`${normalizedHref}/`);
   };
 
   return (
     <div className="dashboard-layout">
-      {/* Sidebar */}
       <aside className="dashboard-sidebar">
         <div className="sidebar-header">
           <div className="sidebar-brand">
@@ -253,6 +288,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               </Link>
             )
           )}
+
           <button className="sidebar-nav-item sidebar-logout" onClick={handleLogout}>
             <span className="sidebar-nav-icon">{icons.logout}</span>
             <span className="sidebar-nav-label">Logout</span>
@@ -260,29 +296,29 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         </nav>
       </aside>
 
-      {/* Main Content */}
       <div className="dashboard-main">
-        {/* Top Header */}
         <header className="dashboard-header">
           <div className="header-search">
             <span className="header-search-icon">{icons.search}</span>
             <input type="text" placeholder="Type to search..." className="header-search-input" />
           </div>
+
           <div className="header-right">
-            {/* Message Icon */}
             <Link
-              href={isLeadArrangerView ? "/dashboard/lead-arranger/messages/" : isB2BMemberView ? "/dashboard/b2b-member/deal-messages/" : "/messages/"}
+              href={
+                isLeadArrangerView
+                  ? "/dashboard/lead-arranger/messages/"
+                  : isB2BMemberView
+                    ? "/dashboard/b2b-member/deal-messages/"
+                    : "/messages/"
+              }
               className="header-icon-btn"
             >
               {icons.messages}
             </Link>
 
-            {/* Notification Icon with Dropdown */}
             <div className="header-notification-wrapper">
-              <button
-                className="header-icon-btn"
-                onClick={() => setShowNotifications(!showNotifications)}
-              >
+              <button className="header-icon-btn" onClick={() => setShowNotifications(!showNotifications)}>
                 {icons.notifications}
                 <span className="header-notification-badge"></span>
               </button>
@@ -293,18 +329,22 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                     <h4>Notifications</h4>
                     <button className="mark-all-read">Mark all as read</button>
                   </div>
+
                   <div className="notification-dropdown-list">
                     {headerNotifications.map((notif) => (
                       <div key={notif.id} className={`notification-dropdown-item ${notif.unread ? "unread" : ""}`}>
                         <img src={notif.avatar} alt="" className="notification-dropdown-avatar" />
+
                         <div className="notification-dropdown-content">
                           <p className="notification-dropdown-title">{notif.title}</p>
                           <span className="notification-dropdown-time">{notif.time}</span>
                         </div>
+
                         {notif.unread && <span className="notification-dropdown-dot"></span>}
                       </div>
                     ))}
                   </div>
+
                   <Link
                     href={isLeadArrangerView ? "/dashboard/lead-arranger/notifications/" : "/notifications/"}
                     className="notification-dropdown-footer"
@@ -316,33 +356,42 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               )}
             </div>
 
-            {/* User Profile */}
             {user && (
               <div className="header-user-wrapper">
-                <button
-                    className="header-user"
-                  onClick={() => setShowUserMenu(!showUserMenu)}
-                >
+                <button className="header-user" onClick={() => setShowUserMenu(!showUserMenu)}>
                   <img
                     src="https://randomuser.me/api/portraits/men/32.jpg"
                     alt={user.name}
                     className="header-user-avatar-img"
                   />
+
                   <div className="header-user-info">
                     <span className="header-user-name">{user.name}</span>
                     <span className="header-user-role">{getRoleLabel(user.role)}</span>
                   </div>
-                  <svg className="header-user-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+
+                  <svg
+                    className="header-user-chevron"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
                     <polyline points="6,9 12,15 18,9" />
                   </svg>
                 </button>
 
                 {showUserMenu && (
                   <div className="header-user-dropdown-menu">
-                    <Link href={isLeadArrangerView ? "/dashboard/lead-arranger/profile/" : "/profile/"} className="user-menu-item" onClick={() => setShowUserMenu(false)}>
+                    <Link
+                      href={isLeadArrangerView ? "/dashboard/lead-arranger/profile/" : "/profile/"}
+                      className="user-menu-item"
+                      onClick={() => setShowUserMenu(false)}
+                    >
                       <span className="user-menu-icon">{icons.profile}</span>
                       My Profile
                     </Link>
+
                     <Link
                       href={isLeadArrangerView ? "/dashboard/lead-arranger/settings/" : "/settings/"}
                       className="user-menu-item"
@@ -351,6 +400,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                       <span className="user-menu-icon">{icons.settings}</span>
                       Settings
                     </Link>
+
                     <button className="user-menu-item logout" onClick={handleLogout}>
                       <span className="user-menu-icon">{icons.logout}</span>
                       Logout
@@ -362,11 +412,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           </div>
         </header>
 
-        {/* Page Content */}
-        <main className="dashboard-content">
-          {children}
-        </main>
+        <main className="dashboard-content">{children}</main>
       </div>
     </div>
   );
-}
+};
