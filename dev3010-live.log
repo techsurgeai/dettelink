@@ -86,3 +86,6 @@
  ✓ Compiled in 212ms (542 modules)
  GET /dashboard 200 in 105ms
  ✓ Compiled /ai-analysis in 374ms (267 modules)
+ ✓ Compiled /login in 448ms (269 modules)
+ GET /login 200 in 691ms
+ GET /dashboard 200 in 63ms
