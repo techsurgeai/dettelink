@@ -9,6 +9,7 @@ export default function AIAnalysisPage() {
   const tabs = [
     { id: "key-financial-highlights", label: "Key Financial Highlights" },
     { id: "financial-health", label: "Financial Health" },
+    { id: "market-industry-analysis", label: "Market and Industry Analysis" },
     { id: "working-capital", label: "Working Capital" },
     { id: "liquidity", label: "Liquidity" },
     { id: "risk-analysis", label: "Risk Analysis" },
@@ -422,6 +423,207 @@ export default function AIAnalysisPage() {
                 <div className="faq-item">
                   <span className="faq-icon">&#62;</span>
                   <span>What you should do next?</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          )}
+
+          {activeTab === "market-industry-analysis" && (
+          <div className="market-analysis-layout">
+            <div className="analysis-card market-analysis-header-card">
+              <div className="market-analysis-header">
+                <div>
+                  <h2 className="card-title">Market &amp; Industry Analysis</h2>
+                  <div className="market-analysis-company-meta">
+                    <div>
+                      <span className="market-meta-label">Company</span>
+                      <strong>NOVA CAR RENTALS LTD</strong>
+                    </div>
+                    <div>
+                      <span className="market-meta-label">Industry</span>
+                      <strong>Car Rental &amp; Mobility Services</strong>
+                    </div>
+                    <div>
+                      <span className="market-meta-label">Region</span>
+                      <strong>United Kingdom</strong>
+                    </div>
+                  </div>
+                </div>
+                <span className="market-region-chip">UK Market</span>
+              </div>
+            </div>
+
+            <div className="market-analysis-grid">
+              <div className="analysis-card">
+                <h3 className="card-title">Company Performance</h3>
+                <div className="market-stat-list">
+                  <div className="market-stat-row">
+                    <span className="market-stat-label">Annual Revenue</span>
+                    <strong className="market-stat-value">GBP 24.8M</strong>
+                  </div>
+                  <div className="market-stat-row">
+                    <span className="market-stat-label">EBITDA Margin</span>
+                    <strong className="market-stat-value">18.4%</strong>
+                  </div>
+                  <div className="market-stat-row">
+                    <span className="market-stat-label">Debt-to-EBITDA Ratio</span>
+                    <strong className="market-stat-value">2.6x</strong>
+                  </div>
+                  <div className="market-stat-row">
+                    <span className="market-stat-label">Fleet Utilization</span>
+                    <strong className="market-stat-value">82%</strong>
+                  </div>
+                  <div className="market-stat-row">
+                    <span className="market-stat-label">Operating Cash Flow</span>
+                    <strong className="market-stat-value">Positive</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div className="analysis-card">
+                <h3 className="card-title">Industry Benchmark</h3>
+                <div className="market-stat-list">
+                  <div className="market-stat-row">
+                    <span className="market-stat-label">UK Car Rental Industry Avg</span>
+                    <strong className="market-stat-value">GBP 19.2M</strong>
+                  </div>
+                  <div className="market-stat-row">
+                    <span className="market-stat-label">Industry EBITDA Margin</span>
+                    <strong className="market-stat-value">14.1%</strong>
+                  </div>
+                  <div className="market-stat-row">
+                    <span className="market-stat-label">Industry Avg Ratio</span>
+                    <strong className="market-stat-value">3.4x</strong>
+                  </div>
+                  <div className="market-stat-row">
+                    <span className="market-stat-label">Industry Avg Utilization</span>
+                    <strong className="market-stat-value">74%</strong>
+                  </div>
+                  <div className="market-stat-row">
+                    <span className="market-stat-label">Industry Cash Flow Trend</span>
+                    <strong className="market-stat-value">Moderate</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="analysis-card">
+              <h3 className="card-title">AI Market Insights</h3>
+              <div className="actions-list market-insight-list">
+                <div className="action-item">
+                  <span className="action-check">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <circle cx="12" cy="12" r="10" fill="#2D8A6E" />
+                      <polyline points="8,12 11,15 16,9" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
+                  <span>Company revenue outperforms UK industry average by 29%.</span>
+                </div>
+                <div className="action-item">
+                  <span className="action-check">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <circle cx="12" cy="12" r="10" fill="#2D8A6E" />
+                      <polyline points="8,12 11,15 16,9" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
+                  <span>EBITDA margin indicates stronger operational efficiency compared to peer rental operators.</span>
+                </div>
+                <div className="action-item">
+                  <span className="action-check">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <circle cx="12" cy="12" r="10" fill="#2D8A6E" />
+                      <polyline points="8,12 11,15 16,9" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
+                  <span>Fleet utilization remains above market average, indicating healthy demand stability.</span>
+                </div>
+                <div className="action-item market-insight-warning">
+                  <span className="market-insight-warning-icon">!</span>
+                  <span>Fuel and maintenance costs in the UK mobility sector increased by approximately 11% YoY.</span>
+                </div>
+                <div className="action-item market-insight-warning">
+                  <span className="market-insight-warning-icon">!</span>
+                  <span>Electric vehicle transition may require additional capital expenditure over the next 24 months.</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="analysis-card">
+              <h3 className="card-title">Peer Comparison</h3>
+              <div className="market-peer-table-wrapper">
+                <table className="market-peer-table">
+                  <thead>
+                    <tr>
+                      <th>Company</th>
+                      <th>Revenue</th>
+                      <th>EBITDA</th>
+                      <th>Debt Ratio</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Nova Car Rentals</td>
+                      <td>GBP 24.8M</td>
+                      <td>18.4%</td>
+                      <td>2.6x</td>
+                    </tr>
+                    <tr>
+                      <td>UK Drive Group</td>
+                      <td>GBP 21.3M</td>
+                      <td>15.2%</td>
+                      <td>3.1x</td>
+                    </tr>
+                    <tr>
+                      <td>CityFleet Mobility</td>
+                      <td>GBP 18.7M</td>
+                      <td>13.8%</td>
+                      <td>3.6x</td>
+                    </tr>
+                    <tr>
+                      <td>RapidRent UK</td>
+                      <td>GBP 26.1M</td>
+                      <td>17.1%</td>
+                      <td>2.9x</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div className="analysis-card market-recommendation-card">
+              <h3 className="card-title">AI Recommendation</h3>
+              <p className="market-recommendation-text">
+                Based on market positioning and financial performance, Nova Car Rentals Ltd
+                demonstrates stronger-than-average operational metrics and is considered suitable
+                for lender outreach and syndicated financing discussions.
+              </p>
+
+              <div className="market-recommendation-list">
+                <span className="market-recommendation-label">Recommended Financing Strategy:</span>
+                <ul className="observation-list">
+                  <li>Fleet Expansion Financing</li>
+                  <li>Asset-Backed Lending</li>
+                  <li>Syndicated Senior Debt Facility</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="analysis-card market-footer-card">
+              <div className="market-footer-content">
+                <div>
+                  <h3 className="card-title">Generated using AI analysis of</h3>
+                  <ul className="observation-list">
+                    <li>Uploaded financial statements</li>
+                    <li>UK mobility industry benchmarks</li>
+                    <li>Peer company performance data</li>
+                    <li>Market trend indicators</li>
+                  </ul>
+                </div>
+                <div className="market-footer-actions">
+                  <button className="btn btn-primary">View Full Analysis</button>
+                  <button className="btn btn-secondary">Download Market PDF</button>
+                  <button className="btn btn-secondary">Compare More Peers</button>
                 </div>
               </div>
             </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import AppLayout from "../../components/AppLayout";
 import UploadDocumentModal, { SubmittedDocument } from "../../components/UploadDocumentModal";
@@ -237,7 +238,16 @@ export default function DocumentsPage() {
                     <span className={`doc-status ${doc.status.toLowerCase()}`}>{doc.status}</span>
                   </td>
                   <td>
-                    <button className="download-pdf-btn">Download PDF</button>
+                    <div className="documents-action-cell">
+                      <Link href="/ai-analysis/" className="view-analysis-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                          <circle cx="12" cy="12" r="3" />
+                        </svg>
+                        View AI Analysis
+                      </Link>
+                      <button className="download-pdf-btn">Download PDF</button>
+                    </div>
                   </td>
                 </tr>
               ))}

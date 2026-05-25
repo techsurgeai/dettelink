@@ -23,6 +23,7 @@ export default function FundingRequirementsPage() {
 
     localStorage.setItem("dl_funding_requirements", JSON.stringify(formData));
     localStorage.setItem("dl_funding_requirements_complete", "true");
+    localStorage.setItem("dl_show_upload_guidance", "true");
     alert("Funding requirements saved successfully!");
     router.push("/dashboard/");
   };
