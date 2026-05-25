@@ -1,0 +1,650 @@
+
+> @dettelinks/web@0.1.0 dev
+> next dev -p 3000
+
+  ▲ Next.js 14.2.5
+  - Local:        http://localhost:3000
+
+ ✓ Starting...
+ ✓ Ready in 2.4s
+ ○ Compiling /login ...
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1489:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ GET /login 200 in 7625ms
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|D:\Code Projects\Dettelinks Webiste\dettelink\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[13].oneOf[12].use[2]!D:\Code Projects\Dettelinks Webiste\dettelink\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[13].oneOf[12].use[3]!D:\Code Projects\Dettelinks Webiste\dettelink\src\app\globals.css': No serializer registered for Warning
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> Array { 1 items } -> webpack/lib/ModuleWarning -> Warning
+ GET /login 200 in 76ms
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1489:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ✓ Compiled /dashboard in 789ms (502 modules)
+ GET /dashboard 200 in 1044ms
+ GET /login 200 in 51ms
+ ✓ Compiled /dashboard/lead-arranger in 412ms (509 modules)
+ ✓ Compiled /teasers/new in 396ms (515 modules)
+ ✓ Compiled in 557ms (515 modules)
+ GET /teasers/new 200 in 242ms
+ ✓ Compiled in 521ms (515 modules)
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1512:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1512:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ GET /teasers/new 200 in 178ms
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|D:\Code Projects\Dettelinks Webiste\dettelink\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[13].oneOf[12].use[2]!D:\Code Projects\Dettelinks Webiste\dettelink\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[13].oneOf[12].use[3]!D:\Code Projects\Dettelinks Webiste\dettelink\src\app\globals.css': No serializer registered for Warning
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> Array { 1 items } -> webpack/lib/ModuleWarning -> Warning
+ ✓ Compiled in 569ms (515 modules)
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1509:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ GET /teasers/new 200 in 168ms
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|D:\Code Projects\Dettelinks Webiste\dettelink\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[13].oneOf[12].use[2]!D:\Code Projects\Dettelinks Webiste\dettelink\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[13].oneOf[12].use[3]!D:\Code Projects\Dettelinks Webiste\dettelink\src\app\globals.css': No serializer registered for Warning
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> Array { 1 items } -> webpack/lib/ModuleWarning -> Warning
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1509:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ○ Compiling /dashboard/lead-arranger/deal-detail ...
+ ✓ Compiled /dashboard/lead-arranger/deal-detail in 575ms (517 modules)
+ ✓ Compiled /dashboard/lead-arranger/recipient-selection in 371ms (523 modules)
+ ✓ Compiled /messages in 374ms (524 modules)
+ ✓ Compiled in 1166ms (520 modules)
+ GET /dashboard/lead-arranger 200 in 235ms
+ ✓ Compiled /deals in 397ms (526 modules)
+ GET /deals 200 in 579ms
+ ✓ Compiled in 397ms (526 modules)
+ GET /dashboard/lead-arranger 200 in 101ms
+ GET /dashboard/lead-arranger 200 in 71ms
+ ○ Compiling /documents ...
+ ✓ Compiled /documents in 656ms (532 modules)
+ ✓ Compiled /settings in 377ms (538 modules)
+ ✓ Compiled /transactions in 435ms (544 modules)
+ ✓ Compiled /profile in 497ms (550 modules)
+ ✓ Compiled /dashboard in 251ms (286 modules)
+ ✓ Compiled in 178ms (266 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 987ms (529 modules)
+ GET /profile 404 in 129ms
+ ○ Compiling /profile ...
+ ✓ Compiled /profile in 996ms (532 modules)
+ ✓ Compiled in 504ms (532 modules)
+ GET /profile 200 in 172ms
+ GET /dashboard/lead-arranger 200 in 220ms
+ ✓ Compiled /dashboard in 345ms (266 modules)
+ GET /profile 200 in 171ms
+ GET /dashboard/lead-arranger 200 in 76ms
+ GET /profile 200 in 55ms
+ ✓ Compiled in 585ms (532 modules)
+ GET /profile 200 in 256ms
+ GET /profile 200 in 47ms
+ ✓ Compiled /dashboard in 194ms (266 modules)
+ ○ Compiling /ai-analysis ...
+ ✓ Compiled /ai-analysis in 559ms (542 modules)
+ GET /profile 200 in 72ms
+ ✓ Compiled /login in 335ms (271 modules)
+ GET /login 200 in 493ms
+ ✓ Compiled in 554ms (529 modules)
+ ✓ Compiled in 426ms (529 modules)
+ ✓ Compiled in 290ms (529 modules)
+ ✓ Compiled in 1043ms (529 modules)
+ ✓ Compiled in 406ms (529 modules)
+ ○ Compiling /profile ...
+ ✓ Compiled /profile in 859ms (538 modules)
+ GET /profile 200 in 848ms
+ GET /dashboard/lead-arranger/profile 200 in 1109ms
+ GET /dashboard/lead-arranger/profile 200 in 89ms
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1509:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ GET /dashboard/lead-arranger/profile 200 in 158ms
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|D:\Code Projects\Dettelinks Webiste\dettelink\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[13].oneOf[12].use[2]!D:\Code Projects\Dettelinks Webiste\dettelink\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[13].oneOf[12].use[3]!D:\Code Projects\Dettelinks Webiste\dettelink\src\app\globals.css': No serializer registered for Warning
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> Array { 1 items } -> webpack/lib/ModuleWarning -> Warning
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1509:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1509:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ○ Compiling /deals ...
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1509:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1509:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1509:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1509:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1509:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1509:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1509:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1509:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1509:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1509:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1509:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1509:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ GET /login 200 in 312ms
+ ✓ Compiled /login in 756ms (536 modules)
+ GET /deals 200 in 366ms
+ GET /dashboard/lead-arranger/deal-detail?id=atlas-logistics-growth-facility 200 in 64ms
+ ✓ Compiled /messages in 252ms (268 modules)
+ ✓ Compiled /login in 145ms (273 modules)
+ GET /login 200 in 284ms
+ ✓ Compiled /teasers/new in 159ms (277 modules)
+ ✓ Compiled in 772ms (534 modules)
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1566:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ GET /teasers/new 200 in 166ms
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|D:\Code Projects\Dettelinks Webiste\dettelink\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[13].oneOf[12].use[2]!D:\Code Projects\Dettelinks Webiste\dettelink\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[13].oneOf[12].use[3]!D:\Code Projects\Dettelinks Webiste\dettelink\src\app\globals.css': No serializer registered for Warning
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> Array { 1 items } -> webpack/lib/ModuleWarning -> Warning
+ GET /teasers/new 200 in 84ms
+ GET /teasers/new 200 in 81ms
+ ✓ Compiled in 635ms (534 modules)
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1590:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ GET /teasers/new 200 in 174ms
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|D:\Code Projects\Dettelinks Webiste\dettelink\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[13].oneOf[12].use[2]!D:\Code Projects\Dettelinks Webiste\dettelink\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[13].oneOf[12].use[3]!D:\Code Projects\Dettelinks Webiste\dettelink\src\app\globals.css': No serializer registered for Warning
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> Array { 1 items } -> webpack/lib/ModuleWarning -> Warning
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1590:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1590:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ○ Compiling /dashboard/lead-arranger/profile ...
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1590:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1590:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ GET /dashboard/lead-arranger/deal-detail?id=northbridge-consumer-receivables 200 in 765ms
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1590:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1590:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ GET /dashboard/lead-arranger/deal-detail?id=atlas-logistics-growth-facility 200 in 171ms
+ ✓ Compiled /dashboard/lead-arranger/recipient-selection in 1337ms (536 modules)
+ ✓ Compiled in 527ms (536 modules)
+ ✓ Compiled in 365ms (536 modules)
+ ✓ Compiled in 406ms (536 modules)
+ ✓ Compiled in 356ms (536 modules)
+ ○ Compiling /dashboard/lead-arranger/compliance ...
+ ✓ Compiled /dashboard/lead-arranger/compliance in 1430ms (544 modules)
+ GET /dashboard/lead-arranger/placements 200 in 1756ms
+ GET /dashboard/lead-arranger/compliance 200 in 1690ms
+ GET /dashboard/lead-arranger/documents 200 in 1795ms
+ GET /dashboard/lead-arranger/teasers 200 in 1769ms
+ GET /dashboard/lead-arranger/deal-detail?id=atlas-logistics-growth-facility 200 in 89ms
+ ✓ Compiled /messages in 501ms (268 modules)
+ ✓ Compiled /dashboard/lead-arranger/placements in 130ms (266 modules)
+ ✓ Compiled in 246ms (266 modules)
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1601:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ GET /dashboard/lead-arranger/compliance 200 in 155ms
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|D:\Code Projects\Dettelinks Webiste\dettelink\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[13].oneOf[12].use[2]!D:\Code Projects\Dettelinks Webiste\dettelink\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[13].oneOf[12].use[3]!D:\Code Projects\Dettelinks Webiste\dettelink\src\app\globals.css': No serializer registered for Warning
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> Array { 1 items } -> webpack/lib/ModuleWarning -> Warning
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1601:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1601:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ○ Compiling /dashboard/lead-arranger ...
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1601:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1601:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1601:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1601:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1601:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1601:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1601:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1601:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ✓ Compiled /_not-found in 1162ms (533 modules)
+ GET /dashboard/lead-arranger/teasers 404 in 173ms
+ ○ Compiling /dashboard/lead-arranger/teasers ...
+ ✓ Compiled /dashboard/lead-arranger/teasers in 777ms (539 modules)
+ ✓ Compiled in 137ms (272 modules)
+ ✓ Compiled in 419ms (529 modules)
+ ✓ Compiled in 308ms (529 modules)
+ GET /dashboard/lead-arranger/teasers 200 in 302ms
+ ○ Compiling /teasers/new ...
+ ✓ Compiled /teasers/new in 1384ms (536 modules)
+ GET /teasers/new 200 in 1605ms
+ ✓ Compiled /deals in 410ms (266 modules)
+ ✓ Compiled in 564ms (536 modules)
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1613:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ GET /teasers/new 200 in 182ms
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|D:\Code Projects\Dettelinks Webiste\dettelink\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[13].oneOf[12].use[2]!D:\Code Projects\Dettelinks Webiste\dettelink\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[13].oneOf[12].use[3]!D:\Code Projects\Dettelinks Webiste\dettelink\src\app\globals.css': No serializer registered for Warning
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> Array { 1 items } -> webpack/lib/ModuleWarning -> Warning
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1617:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ GET /dashboard/lead-arranger/teasers 200 in 121ms
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|D:\Code Projects\Dettelinks Webiste\dettelink\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[13].oneOf[12].use[2]!D:\Code Projects\Dettelinks Webiste\dettelink\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[13].oneOf[12].use[3]!D:\Code Projects\Dettelinks Webiste\dettelink\src\app\globals.css': No serializer registered for Warning
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> Array { 1 items } -> webpack/lib/ModuleWarning -> Warning
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1617:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1617:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ○ Compiling /dashboard/lead-arranger/recipient-selection ...
+ ✓ Compiled /dashboard/lead-arranger/recipient-selection in 937ms (536 modules)
+ ✓ Compiled in 323ms (262 modules)
+ ✓ Compiled in 203ms (274 modules)
+ ✓ Compiled in 468ms (536 modules)
+ ✓ Compiled in 489ms (536 modules)
+ ✓ Compiled /dashboard/lead-arranger/messages in 406ms (542 modules)
+ GET /dashboard/lead-arranger/messages 200 in 595ms
+ ✓ Compiled /notifications in 465ms (548 modules)
+ ✓ Compiled /dashboard in 275ms (274 modules)
+ ✓ Compiled in 1086ms (541 modules)
+ ✓ Compiled in 268ms (278 modules)
+ ✓ Compiled in 361ms (541 modules)
+ ✓ Compiled in 385ms (541 modules)
+ ○ Compiling /dashboard/lead-arranger/settings ...
+ ✓ Compiled /dashboard/lead-arranger/settings in 718ms (553 modules)
+ GET /dashboard/lead-arranger/settings 200 in 710ms
+ GET /dashboard/lead-arranger/notifications 200 in 941ms
+ ✓ Compiled /dashboard/lead-arranger/profile in 365ms (272 modules)
+ ✓ Compiled /dashboard/lead-arranger in 335ms (276 modules)
+ ✓ Compiled in 489ms (282 modules)
+ ✓ Compiled in 526ms (545 modules)
+ ✓ Compiled in 395ms (545 modules)
+ ✓ Compiled /lead-arranger/login in 375ms (269 modules)
+ ✓ Compiled in 414ms (557 modules)
+ GET /lead-arranger/login 200 in 1177ms
+ GET /login 200 in 1181ms
+ GET /login 200 in 58ms
+ ✓ Compiled in 882ms (549 modules)
+ GET /lead-arranger/login 200 in 190ms
+ GET /dashboard/lead-arranger 200 in 86ms
+ ✓ Compiled in 532ms (549 modules)
+ ✓ Compiled in 518ms (549 modules)
+ ○ Compiling /lead-arranger/register ...
+ ✓ Compiled /lead-arranger/register in 582ms (555 modules)
+ GET /lead-arranger/login 200 in 816ms
+ GET /lead-arranger/register 200 in 845ms
+ GET /login 200 in 83ms
+ ✓ Compiled in 719ms (551 modules)
+ GET /dashboard/lead-arranger 200 in 184ms
+ ✓ Compiled in 906ms (551 modules)
+ ✓ Compiled in 509ms (551 modules)
+ ✓ Compiled in 653ms (551 modules)
+ ✓ Compiled in 473ms (551 modules)
+ ✓ Compiled in 437ms (551 modules)
+ ✓ Compiled in 446ms (286 modules)
+ ✓ Compiled in 416ms (551 modules)
+ ○ Compiling /dashboard/b2b-member ...
+ ✓ Compiled /dashboard/b2b-member in 860ms (563 modules)
+ GET /dashboard/b2b-member 200 in 1082ms
+ GET /b2b-member/login 200 in 1087ms
+ GET /login 200 in 59ms
+ GET /dashboard/b2b-member 200 in 55ms
+ ○ Compiling /profile ...
+ ✓ Compiled /profile in 596ms (274 modules)
+ ✓ Compiled /ai-analysis in 280ms (278 modules)
+ ○ Compiling /advisory ...
+ ✓ Compiled /advisory in 622ms (574 modules)
+ ✓ Compiled /transactions in 172ms (286 modules)
+ ✓ Compiled /documents in 180ms (290 modules)
+ ✓ Compiled /notifications in 274ms (282 modules)
+ ✓ Compiled /settings in 166ms (286 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1750ms (575 modules)
+ GET /dashboard/b2b-member 404 in 146ms
+ ○ Compiling /dashboard/b2b-member ...
+ ✓ Compiled /dashboard/b2b-member in 1122ms (561 modules)
+ GET /dashboard/b2b-member 200 in 131ms
+ ✓ Compiled in 597ms (558 modules)
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1617:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ GET /dashboard/b2b-member 200 in 98ms
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|D:\Code Projects\Dettelinks Webiste\dettelink\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[13].oneOf[12].use[2]!D:\Code Projects\Dettelinks Webiste\dettelink\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[13].oneOf[12].use[3]!D:\Code Projects\Dettelinks Webiste\dettelink\src\app\globals.css': No serializer registered for Warning
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> Array { 1 items } -> webpack/lib/ModuleWarning -> Warning
+ ✓ Compiled in 590ms (558 modules)
+ GET /dashboard/b2b-member 200 in 103ms
+ ✓ Compiled in 558ms (558 modules)
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1617:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ GET /dashboard/b2b-member 200 in 188ms
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|D:\Code Projects\Dettelinks Webiste\dettelink\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[13].oneOf[12].use[2]!D:\Code Projects\Dettelinks Webiste\dettelink\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[13].oneOf[12].use[3]!D:\Code Projects\Dettelinks Webiste\dettelink\src\app\globals.css': No serializer registered for Warning
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> Array { 1 items } -> webpack/lib/ModuleWarning -> Warning
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1617:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ GET /dashboard/b2b-member 200 in 97ms
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|D:\Code Projects\Dettelinks Webiste\dettelink\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[13].oneOf[12].use[2]!D:\Code Projects\Dettelinks Webiste\dettelink\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[13].oneOf[12].use[3]!D:\Code Projects\Dettelinks Webiste\dettelink\src\app\globals.css': No serializer registered for Warning
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> Array { 1 items } -> webpack/lib/ModuleWarning -> Warning
+ ✓ Compiled in 2.1s (558 modules)
+ ○ Compiling /dashboard/b2b-member/teasers ...
+ ✓ Compiled /dashboard/b2b-member/teasers in 576ms (564 modules)
+ GET /dashboard/b2b-member 200 in 809ms
+ GET /dashboard/b2b-member/teasers 200 in 879ms
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|D:\Code Projects\Dettelinks Webiste\dettelink\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[13].oneOf[12].use[2]!D:\Code Projects\Dettelinks Webiste\dettelink\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[13].oneOf[12].use[3]!D:\Code Projects\Dettelinks Webiste\dettelink\src\app\globals.css': No serializer registered for Warning
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> Array { 1 items } -> webpack/lib/ModuleWarning -> Warning
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1617:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1617:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1617:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ⚠ ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+Warning
+
+(1617:3) autoprefixer: start value has mixed support, consider using flex-start instead
+
+Import trace for requested module:
+./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/app/globals.css
+./src/app/globals.css
+ ○ Compiling /dashboard/b2b-member/teasers/received ...
+ ✓ Compiled /dashboard/b2b-member/teasers/received in 655ms (564 modules)
+ GET /dashboard/b2b-member/teasers 200 in 885ms
+ GET /dashboard/b2b-member/teasers/received 200 in 964ms
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|D:\Code Projects\Dettelinks Webiste\dettelink\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[13].oneOf[12].use[2]!D:\Code Projects\Dettelinks Webiste\dettelink\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[13].oneOf[12].use[3]!D:\Code Projects\Dettelinks Webiste\dettelink\src\app\globals.css': No serializer registered for Warning
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> Array { 1 items } -> webpack/lib/ModuleWarning -> Warning
+ ✓ Compiled in 683ms (560 modules)
+ GET /dashboard/b2b-member/teasers 200 in 193ms
+ ✓ Compiled /dashboard/lead-arranger/compliance in 372ms (266 modules)
+ ✓ Compiled /login in 418ms (267 modules)
+ GET /login 200 in 636ms
+ ✓ Compiled /b2b-member/login in 147ms (271 modules)
+^C^C

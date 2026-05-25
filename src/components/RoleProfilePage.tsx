@@ -4,9 +4,9 @@ import { useEffect, useMemo, useState } from "react";
 import AppLayout from "./AppLayout";
 import { getStoredAuth } from "../lib/auth";
 
-type Option = { value: string; label: string };
+export type Option = { value: string; label: string };
 
-type FieldConfig = {
+export type FieldConfig = {
   name: string;
   label: string;
   type?: "text" | "email" | "password" | "select" | "textarea";
@@ -15,19 +15,19 @@ type FieldConfig = {
   highlight?: boolean;
 };
 
-type SectionConfig = {
+export type SectionConfig = {
   title: string;
   fields: FieldConfig[];
 };
 
-type StepConfig = {
+export type StepConfig = {
   title: string;
   sections: SectionConfig[];
 };
 
 type ProfileMode = "member" | "lead_arranger";
 
-const memberSteps: StepConfig[] = [
+export const memberSteps: StepConfig[] = [
   {
     title: "Account Information",
     sections: [
@@ -125,6 +125,9 @@ const memberSteps: StepConfig[] = [
       },
     ],
   },
+];
+
+export const memberFundingRequirementSteps: StepConfig[] = [
   {
     title: "Funding Intent",
     sections: [
@@ -198,11 +201,11 @@ const memberSteps: StepConfig[] = [
             type: "select",
             options: [
               { value: "", label: "Select Range" },
-              { value: "<50K", label: "<$50K" },
-              { value: "50K-100K", label: "$50K - $100K" },
-              { value: "100K-500K", label: "$100K - $500K" },
-              { value: "500K-1M", label: "$500K - $1M" },
-              { value: "1M+", label: "$1M+" },
+              { value: "<50M", label: "<50 Million" },
+              { value: "50M-100M", label: "50-100 Million" },
+              { value: "100M-250M", label: "100-250 Million" },
+              { value: "250M-500M", label: "250-500 Million" },
+              { value: "500M+", label: "500 Million Above" },
             ],
           },
           { name: "monthlyExpenses", label: "Monthly Expenses", placeholder: "Input in local currency" },
@@ -431,7 +434,7 @@ const leadArrangerSteps: StepConfig[] = [
   },
 ];
 
-const initialFormData: Record<string, string> = {
+export const initialFormData: Record<string, string> = {
   fullName: "Andrew Sabastian",
   email: "johndoe@gmail.com",
   password: "",
@@ -488,7 +491,7 @@ const initialFormData: Record<string, string> = {
   teaserDisclaimerTemplate: "",
 };
 
-function renderField(
+export function renderField(
   field: FieldConfig,
   formData: Record<string, string>,
   setFormData: React.Dispatch<React.SetStateAction<Record<string, string>>>,
@@ -615,15 +618,17 @@ export default function RoleProfilePage({ mode }: { mode: ProfileMode }) {
               </span>
             </h2>
             <p className="profile-role">{isLeadArranger ? "Lead Arranger" : "Founder at Trello"}</p>
-            <div className="profile-completion">
-              <div className="completion-header">
-                <span className="completion-label">Complete Your Profile</span>
-                <span className="completion-percent-badge">{profileCompletion}%</span>
+            {!isProfileSaved && (
+              <div className="profile-completion">
+                <div className="completion-header">
+                  <span className="completion-label">Complete Your Profile</span>
+                  <span className="completion-percent-badge">{profileCompletion}%</span>
+                </div>
+                <div className="completion-bar">
+                  <div className="completion-bar-fill" style={{ width: `${profileCompletion}%` }} />
+                </div>
               </div>
-              <div className="completion-bar">
-                <div className="completion-bar-fill" style={{ width: `${profileCompletion}%` }} />
-              </div>
-            </div>
+            )}
             {isProfileSaved && (
               <button className="btn-edit-profile" onClick={handleEditProfile}>
                 Edit Profile

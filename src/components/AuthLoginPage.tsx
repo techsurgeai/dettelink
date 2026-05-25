@@ -5,7 +5,7 @@ import { useState } from "react";
 import { apiFetch, setToken } from "../lib/api";
 import { getDashboardPathForRole, isB2BMemberRole, isLeadArrangerRole, parseTokenPayload } from "../lib/auth";
 
-type SupportedRole = "lead_arranger" | "b2b_member";
+type SupportedRole = "admin" | "lead_arranger" | "b2b_member";
 
 type AuthLoginPageProps = {
   title: string;
@@ -22,6 +22,12 @@ type AuthLoginPageProps = {
 };
 
 const demoUsers: Record<SupportedRole, { email: string; password: string; fullName: string; role: SupportedRole }> = {
+  admin: {
+    email: "mainadmin@dettelinks.com",
+    password: "MainAdmin123!",
+    fullName: "Main Admin",
+    role: "admin",
+  },
   lead_arranger: {
     email: "admin@dettelinks.com",
     password: "Admin123!",
@@ -72,7 +78,7 @@ export default function AuthLoginPage({
     const email = String(payload.email ?? "").trim().toLowerCase();
     const password = String(payload.password ?? "");
 
-    const matchedDemoUser = requiredRole ? demoUsers[requiredRole] : null;
+    const matchedDemoUser = requiredRole ? demoUsers[requiredRole] : demoUsers.admin;
 
     if (
       matchedDemoUser &&

@@ -7,6 +7,8 @@ import { getDashboardPathForRole, getLoginPathForRole, getRoleLabel, getStoredAu
 
 const memberNavItems = [
   { href: "/dashboard/", label: "Dashboard", icon: "dashboard" },
+  { href: "/bank-integration/", label: "Bank Integration", icon: "financing", disabled: true },
+  { href: "/funding-requirements/", label: "Funding Requirements", icon: "financing" },
   { href: "/profile/", label: "My Profile", icon: "profile" },
   { href: "/ai-analysis/", label: "AI Analysis & Reports", icon: "ai" },
   { href: "/advisory/", label: "Advisory Sessions", icon: "advisory" },
@@ -234,16 +236,23 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         </div>
 
         <nav className="sidebar-nav">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`sidebar-nav-item ${isNavItemActive(item.href) ? "active" : ""}`}
-            >
-              <span className="sidebar-nav-icon">{icons[item.icon]}</span>
-              <span className="sidebar-nav-label">{item.label}</span>
-            </Link>
-          ))}
+          {navItems.map((item) =>
+            item.disabled ? (
+              <div key={item.label} className="sidebar-nav-item sidebar-nav-item-disabled" aria-disabled="true">
+                <span className="sidebar-nav-icon">{icons[item.icon]}</span>
+                <span className="sidebar-nav-label">{item.label}</span>
+              </div>
+            ) : (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`sidebar-nav-item ${isNavItemActive(item.href) ? "active" : ""}`}
+              >
+                <span className="sidebar-nav-icon">{icons[item.icon]}</span>
+                <span className="sidebar-nav-label">{item.label}</span>
+              </Link>
+            )
+          )}
           <button className="sidebar-nav-item sidebar-logout" onClick={handleLogout}>
             <span className="sidebar-nav-icon">{icons.logout}</span>
             <span className="sidebar-nav-label">Logout</span>

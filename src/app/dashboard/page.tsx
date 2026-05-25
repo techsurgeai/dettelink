@@ -5,12 +5,27 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import AppLayout from "../../components/AppLayout";
 import { getStoredAuth, isB2BMemberRole, isLeadArrangerRole } from "../../lib/auth";
+import UploadDocumentModal, { SubmittedDocument } from "../../components/UploadDocumentModal";
+
+function normalizeSubmittedDocument(document: SubmittedDocument): SubmittedDocument {
+  return {
+    ...document,
+    selectedBanks: Array.isArray(document.selectedBanks) ? document.selectedBanks : [],
+    sendToAllBanks: Boolean(document.sendToAllBanks),
+  };
+}
 
 export default function Dashboard() {
   const router = useRouter();
   const [userName, setUserName] = useState("Alex");
   const [greeting, setGreeting] = useState("Good Morning");
   const [showProfilePopup, setShowProfilePopup] = useState(false);
+  const [showUploadModal, setShowUploadModal] = useState(false);
+  const [isProfileComplete, setIsProfileComplete] = useState(false);
+  const [isFundingComplete, setIsFundingComplete] = useState(false);
+  const [isSetupReady, setIsSetupReady] = useState(false);
+  const [submittedDocuments, setSubmittedDocuments] = useState<SubmittedDocument[]>([]);
+  const [submittedSuccessDocument, setSubmittedSuccessDocument] = useState<SubmittedDocument | null>(null);
   const profileCompletion = 40; // Static for now, can be calculated from API
 
   useEffect(() => {
@@ -35,10 +50,17 @@ export default function Dashboard() {
 
     // Check if profile is incomplete and show popup
     const profileComplete = localStorage.getItem("dl_profile_complete");
-    const popupDismissed = sessionStorage.getItem("dl_profile_popup_dismissed");
-    if (!profileComplete && !popupDismissed) {
-      setShowProfilePopup(true);
-    }
+    const fundingComplete = localStorage.getItem("dl_funding_requirements_complete");
+    const storedSubmittedDocuments = localStorage.getItem("dl_dashboard_submitted_documents");
+    setIsProfileComplete(Boolean(profileComplete));
+    setIsFundingComplete(Boolean(fundingComplete));
+    setIsSetupReady(Boolean(profileComplete) && Boolean(fundingComplete));
+    setSubmittedDocuments(
+      storedSubmittedDocuments
+        ? (JSON.parse(storedSubmittedDocuments) as SubmittedDocument[]).map(normalizeSubmittedDocument)
+        : []
+    );
+    setShowProfilePopup(false);
   }, [router]);
 
   const handleClosePopup = () => {
@@ -51,11 +73,38 @@ export default function Dashboard() {
     router.push("/profile/");
   };
 
+  const handleDocumentsSubmitted = (documents: SubmittedDocument[]) => {
+    setSubmittedDocuments((prev) => {
+      const next = [...documents.map(normalizeSubmittedDocument), ...prev];
+      localStorage.setItem("dl_dashboard_submitted_documents", JSON.stringify(next));
+      return next;
+    });
+  };
+
+  const handleDeleteSubmittedDocument = (id: number) => {
+    setSubmittedDocuments((prev) => {
+      const next = prev.filter((document) => document.id !== id);
+      localStorage.setItem("dl_dashboard_submitted_documents", JSON.stringify(next));
+      return next;
+    });
+  };
+
+  const handleSubmitDocument = (document: SubmittedDocument) => {
+    const storedDocuments = localStorage.getItem("dl_documents_submitted");
+    const existingDocuments = storedDocuments ? (JSON.parse(storedDocuments) as SubmittedDocument[]) : [];
+    const dedupedDocuments = existingDocuments.filter((entry) => entry.id !== document.id);
+    localStorage.setItem("dl_documents_submitted", JSON.stringify([document, ...dedupedDocuments]));
+    setSubmittedSuccessDocument(document);
+    window.setTimeout(() => {
+      router.push("/documents/");
+    }, 1200);
+  };
+
   return (
     <AppLayout>
       <div className="dashboard-page">
         {/* Profile Incomplete Popup */}
-        {showProfilePopup && (
+        {showProfilePopup && isSetupReady && (
           <div className="profile-popup-overlay">
             <div className="profile-popup">
               <button className="profile-popup-close" onClick={handleClosePopup}>
@@ -135,6 +184,71 @@ export default function Dashboard() {
           <h1>{greeting}, {userName}</h1>
         </div>
 
+        {!isSetupReady ? (
+          <div className="dashboard-empty-state empty-state">
+            <div className="dashboard-empty-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+                <rect x="3" y="4" width="18" height="16" rx="2" />
+                <path d="M7 9h10" />
+                <path d="M7 13h6" />
+              </svg>
+            </div>
+            <h2>No data to show</h2>
+            <p>Complete your profile and add funding requirements to unlock your dashboard insights.</p>
+            <div className="dashboard-empty-actions">
+              <Link href="/profile/" className={`btn dashboard-empty-action ${isProfileComplete ? "btn-outline-green" : "btn-green"}`}>
+                {isProfileComplete ? "Profile Completed" : "Complete Profile"}
+              </Link>
+              <Link href="/funding-requirements/" className={`btn dashboard-empty-action ${isFundingComplete ? "btn-outline-green" : "btn-green"}`}>
+                {isFundingComplete ? "Funding Requirement Added" : "Add Funding Requirement"}
+              </Link>
+            </div>
+            {submittedDocuments.length > 0 && (
+              <div className="dashboard-submitted-documents">
+                <h3>Uploaded Documents</h3>
+                <div className="dashboard-submitted-list">
+                  {submittedDocuments.map((document) => (
+                    <div key={document.id} className="dashboard-submitted-item">
+                      <button
+                        className="dashboard-submitted-delete-icon"
+                        onClick={() => handleDeleteSubmittedDocument(document.id)}
+                        aria-label={`Delete ${document.name}`}
+                      >
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <polyline points="3,6 5,6 21,6" />
+                          <path d="M19,6l-1,14a2,2 0 0 1-2,2H8a2,2 0 0 1-2-2L5,6" />
+                          <path d="M10 11v6" />
+                          <path d="M14 11v6" />
+                          <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" />
+                        </svg>
+                      </button>
+                      <div className="dashboard-submitted-copy">
+                        <strong>{document.name}</strong>
+                        <span>{document.typeLabel} submitted</span>
+                        <span>{document.sizeLabel}{document.confidential ? " • Confidential" : ""}</span>
+                        <div className="dashboard-bank-chips">
+                          {document.sendToAllBanks ? (
+                            <span className="dashboard-bank-chip">Sending to all banks</span>
+                          ) : (
+                            (document.selectedBanks ?? []).map((bank) => (
+                              <span key={bank} className="dashboard-bank-chip">{bank}</span>
+                            ))
+                          )}
+                        </div>
+                      </div>
+                      <div className="dashboard-submitted-actions">
+                        <button className="btn btn-green dashboard-submitted-submit" onClick={() => handleSubmitDocument(document)}>
+                          {`Submit ${document.typeLabel}`}
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        ) : (
+        <>
         {/* Top Stats Row */}
         <div className="dashboard-stats-row">
           {/* AI Analysis Status */}
@@ -235,219 +349,8 @@ export default function Dashboard() {
 
         {/* Main Content Grid */}
         <div className="dashboard-main-grid">
-          {/* Left Column - Charts */}
-          <div className="dashboard-left-col">
-            {/* Charts Row */}
-            <div className="charts-row">
-              {/* Working Capital */}
-              <div className="chart-box">
-                <div className="chart-box-header">
-                  <h3>Working Capital</h3>
-                  <span className="chart-period">Last 6 Months</span>
-                </div>
-                <div className="bar-chart-container">
-                  <div className="bar-chart-y-axis">
-                    <span>$4M</span>
-                    <span>$3M</span>
-                    <span>$2M</span>
-                    <span>$1M</span>
-                    <span>$0</span>
-                  </div>
-                  <div className="bar-chart-bars">
-                    <div className="bar-item"><div className="bar" style={{ height: '30%' }}></div></div>
-                    <div className="bar-item"><div className="bar" style={{ height: '45%' }}></div></div>
-                    <div className="bar-item"><div className="bar" style={{ height: '35%' }}></div></div>
-                    <div className="bar-item"><div className="bar" style={{ height: '65%' }}></div></div>
-                    <div className="bar-item"><div className="bar" style={{ height: '55%' }}></div></div>
-                    <div className="bar-item"><div className="bar" style={{ height: '90%' }}></div></div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Liquidity Ratio - Line Chart */}
-              <div className="chart-box">
-                <div className="chart-box-header">
-                  <h3>Liquidity Ratio</h3>
-                  <span className="chart-period">Last 6 Months</span>
-                </div>
-                <div className="line-chart-wrapper">
-                  <div className="line-chart-y-axis">
-                    <span>3</span>
-                    <span>2.25</span>
-                    <span>1.5</span>
-                    <span>0.75</span>
-                    <span>0</span>
-                  </div>
-                  <div className="line-chart-area">
-                    <svg viewBox="0 0 300 160" preserveAspectRatio="none" className="line-chart-svg">
-                      <defs>
-                        <linearGradient id="lineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                          <stop offset="0%" stopColor="#549780" stopOpacity="0.15" />
-                          <stop offset="100%" stopColor="#549780" stopOpacity="0" />
-                        </linearGradient>
-                      </defs>
-                      {/* Grid lines */}
-                      <line x1="0" y1="10" x2="300" y2="10" stroke="#f0f0f0" strokeWidth="0.5" />
-                      <line x1="0" y1="45" x2="300" y2="45" stroke="#f0f0f0" strokeWidth="0.5" />
-                      <line x1="0" y1="80" x2="300" y2="80" stroke="#f0f0f0" strokeWidth="0.5" />
-                      <line x1="0" y1="115" x2="300" y2="115" stroke="#f0f0f0" strokeWidth="0.5" />
-                      <line x1="0" y1="150" x2="300" y2="150" stroke="#f0f0f0" strokeWidth="0.5" />
-                      {/* Area fill */}
-                      <path
-                        d="M10,57 C30,63 48,66 68,66 C88,66 106,65 126,64 C146,55 164,42 184,38 C204,28 222,16 242,15 C262,18 275,40 290,47 L290,150 L10,150 Z"
-                        fill="url(#lineGradient)"
-                      />
-                      {/* Line */}
-                      <path
-                        d="M10,57 C30,63 48,66 68,66 C88,66 106,65 126,64 C146,55 164,42 184,38 C204,28 222,16 242,15 C262,18 275,40 290,47"
-                        fill="none"
-                        stroke="#549780"
-                        strokeWidth="2.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      {/* Dots */}
-                      <circle cx="10" cy="57" r="4" fill="#549780" />
-                      <circle cx="68" cy="66" r="4" fill="#549780" />
-                      <circle cx="126" cy="64" r="4" fill="#549780" />
-                      <circle cx="184" cy="38" r="4" fill="#549780" />
-                      <circle cx="242" cy="15" r="4" fill="#549780" />
-                      <circle cx="290" cy="47" r="4" fill="#549780" />
-                    </svg>
-                    <div className="line-chart-x-axis">
-                      <span>Jan</span>
-                      <span>Feb</span>
-                      <span>Mar</span>
-                      <span>Apr</span>
-                      <span>Mai</span>
-                      <span>Jun</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Bottom Row - Funding Needs & Risk Rating */}
-            <div className="charts-row">
-              {/* Funding Needs */}
-              <div className="chart-box">
-                <h3 className="chart-box-title">Funding Needs</h3>
-                <div className="funding-list">
-                  <div className="funding-item">
-                    <div className="funding-item-header">
-                      <span className="funding-label">Short Term</span>
-                      <span className="funding-amount">$195k</span>
-                    </div>
-                    <div className="funding-bar-track">
-                      <div className="funding-bar-fill funding-bar-red" style={{ width: '70%' }}></div>
-                    </div>
-                  </div>
-                  <div className="funding-item">
-                    <div className="funding-item-header">
-                      <span className="funding-label">Medium Term</span>
-                      <span className="funding-amount">$135k</span>
-                    </div>
-                    <div className="funding-bar-track">
-                      <div className="funding-bar-fill funding-bar-yellow" style={{ width: '50%' }}></div>
-                    </div>
-                  </div>
-                  <div className="funding-item">
-                    <div className="funding-item-header">
-                      <span className="funding-label">Long Term</span>
-                      <span className="funding-amount">$90k</span>
-                    </div>
-                    <div className="funding-bar-track">
-                      <div className="funding-bar-fill funding-bar-teal" style={{ width: '35%' }}></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Risk Rating */}
-              <div className="chart-box risk-box">
-                <h3 className="chart-box-title">Risk Rating</h3>
-                <p className="risk-subtitle">Overall Assessment</p>
-                <div className="risk-gauge-center">
-                  <svg viewBox="0 0 200 120" className="risk-semicircle-svg">
-                    {/* Background arc */}
-                    <path
-                      d="M 20,100 A 80,80 0 0,1 180,100"
-                      fill="none"
-                      stroke="#e5e7eb"
-                      strokeWidth="16"
-                      strokeLinecap="round"
-                    />
-                    {/* Filled arc (35%) */}
-                    <path
-                      d="M 20,100 A 80,80 0 0,1 180,100"
-                      fill="none"
-                      stroke="#549780"
-                      strokeWidth="16"
-                      strokeLinecap="round"
-                      strokeDasharray="88 252"
-                    />
-                  </svg>
-                  <div className="risk-semicircle-value">35%</div>
-                </div>
-                <div className="risk-center-label">
-                  <span className="risk-label-text">Low</span>
-                  <span className="risk-label-desc">Strong Financial Position</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
           {/* Right Column - Advisory, Notifications, Messages */}
           <div className="dashboard-right-col">
-            {/* Ongoing Advisory & Transactions */}
-            <div className="info-box advisory-box">
-              <div className="advisory-header">
-                <h3 className="info-box-title">Ongoing Advisory & Transactions</h3>
-                <a href="#" className="view-all-link">View All</a>
-              </div>
-
-              <div className="advisory-list">
-                {/* Advisory Item 1 */}
-                <div className="advisory-item">
-                <div className="advisory-item-header">
-                  <div className="advisory-item-info">
-                    <h4 className="advisory-item-title">Working Capital Analysis</h4>
-                    <p className="advisory-item-subtitle">Financial Assessment</p>
-                  </div>
-                  <span className="badge badge-yellow-outline">In Review</span>
-                </div>
-                <div className="advisory-item-footer">
-                  <div className="advisor-info">
-                    <span className="advisor-label">Advisor</span>
-                    <div className="advisor-profile">
-                      <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Michael Zhang" className="advisor-avatar" />
-                      <span className="advisor-name">Michael Zhang</span>
-                    </div>
-                  </div>
-                  <div className="advisory-actions">
-                    <button className="advisory-action-btn">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <circle cx="12" cy="12" r="3" />
-                        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z" />
-                      </svg>
-                    </button>
-                    <button className="advisory-action-btn">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                      </svg>
-                    </button>
-                    <button className="advisory-action-btn">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <polyline points="9,18 15,12 9,6" />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              </div>
-            </div>
-
             {/* Notifications */}
             <div className="info-box notification-box">
               <div className="notification-header">
@@ -509,7 +412,7 @@ export default function Dashboard() {
               <h4>Schedule Consultation</h4>
               <p>Book time with an advisor</p>
             </div>
-            <div className="next-step-box">
+            <button className="next-step-box" type="button" onClick={() => setShowUploadModal(true)}>
               <div className="next-step-icon icon-green">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
@@ -519,55 +422,73 @@ export default function Dashboard() {
               </div>
               <h4>Upload Document</h4>
               <p>Share Financial Data</p>
-            </div>
-            <div className="next-step-box">
-              <div className="next-step-icon icon-green">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <polyline points="23,4 23,10 17,10" />
-                  <polyline points="1,20 1,14 7,14" />
-                  <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
-                </svg>
-              </div>
-              <h4>Request AI Reassessment</h4>
-              <p>Run updated analysis</p>
-            </div>
-            <div className="next-step-box">
-              <div className="next-step-icon icon-purple">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                  <circle cx="12" cy="12" r="3" />
-                </svg>
-              </div>
-              <h4>View Recommendation</h4>
-              <p>See AI insights</p>
-            </div>
+            </button>
           </div>
         </div>
-
-        {/* Quick Access Section */}
-        <div className="quick-access-section">
-          <h2 className="section-heading">Quick Access</h2>
-          <div className="quick-access-row">
-            <Link href="/documents/" className="quick-access-box">
-              <div className="quick-access-icon">
-                <img src="/images/folder-icon.png" alt="Folder" className="quick-access-icon-img" />
-              </div>
-              <span>Upload Financial Docs</span>
-            </Link>
-            <Link href="/advisory/" className="quick-access-box">
-              <div className="quick-access-icon">
-                <img src="/images/calendar-icon.png" alt="Calendar" className="quick-access-icon-img" />
-              </div>
-              <span>Schedule Consultation</span>
-            </Link>
-            <Link href="/financing/" className="quick-access-box">
-              <div className="quick-access-icon">
-                <img src="/images/glyph-icon.png" alt="Finance" className="quick-access-icon-img" />
-              </div>
-              <span>Explore Finance Deals</span>
-            </Link>
+        {submittedDocuments.length > 0 && (
+          <div className="dashboard-submitted-documents">
+            <h2 className="section-heading">Uploaded Documents</h2>
+            <div className="dashboard-submitted-list">
+              {submittedDocuments.map((document) => (
+                <div key={document.id} className="dashboard-submitted-item">
+                  <button
+                    className="dashboard-submitted-delete-icon"
+                    onClick={() => handleDeleteSubmittedDocument(document.id)}
+                    aria-label={`Delete ${document.name}`}
+                  >
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="3,6 5,6 21,6" />
+                      <path d="M19,6l-1,14a2,2 0 0 1-2,2H8a2,2 0 0 1-2-2L5,6" />
+                      <path d="M10 11v6" />
+                      <path d="M14 11v6" />
+                      <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" />
+                    </svg>
+                  </button>
+                  <div className="dashboard-submitted-copy">
+                    <strong>{document.name}</strong>
+                    <span>{document.typeLabel} submitted</span>
+                    <span>{document.sizeLabel}{document.confidential ? " • Confidential" : ""}</span>
+                    <div className="dashboard-bank-chips">
+                      {document.sendToAllBanks ? (
+                        <span className="dashboard-bank-chip">Sending to all banks</span>
+                      ) : (
+                        (document.selectedBanks ?? []).map((bank) => (
+                          <span key={bank} className="dashboard-bank-chip">{bank}</span>
+                        ))
+                      )}
+                    </div>
+                  </div>
+                  <div className="dashboard-submitted-actions">
+                    <button className="btn btn-green dashboard-submitted-submit" onClick={() => handleSubmitDocument(document)}>
+                      {`Submit ${document.typeLabel}`}
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
+        </>
+        )}
+        {submittedSuccessDocument && (
+          <div className="modal-overlay">
+            <div className="dashboard-success-modal">
+              <div className="dashboard-success-icon">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="10" fill="#22c55e" />
+                  <polyline points="8,12 11,15 16,9" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+              <h2>Submitted successfully</h2>
+              <p>{submittedSuccessDocument.name} has been added to your Documents screen.</p>
+            </div>
+          </div>
+        )}
+        <UploadDocumentModal
+          open={showUploadModal}
+          onClose={() => setShowUploadModal(false)}
+          onSubmitComplete={handleDocumentsSubmitted}
+        />
       </div>
     </AppLayout>
   );

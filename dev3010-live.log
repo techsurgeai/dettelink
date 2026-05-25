@@ -1,0 +1,26 @@
+
+> @dettelinks/web@0.1.0 dev
+> next dev -p 3000 --port 3010
+
+  ▲ Next.js 14.2.5
+  - Local:        http://localhost:3010
+
+ ✓ Starting...
+ ✓ Ready in 2.5s
+ ○ Compiling / ...
+ ✓ Compiled / in 650ms (443 modules)
+ HEAD / 307 in 850ms
+ ○ Compiling /login ...
+ ✓ Compiled /login in 1182ms (501 modules)
+ GET /login 200 in 1489ms
+ GET /login 200 in 277ms
+ ○ Compiling /b2b-member/login ...
+ ✓ Compiled /b2b-member/login in 908ms (499 modules)
+ ○ Compiling /dashboard/b2b-member ...
+ ✓ Compiled /dashboard/b2b-member in 989ms (509 modules)
+ GET /dashboard/b2b-member 200 in 1396ms
+ ✓ Compiled /dashboard/b2b-member/opportunities in 406ms (515 modules)
+ ✓ Compiled /dashboard/b2b-member/teasers in 437ms (521 modules)
+ ✓ Compiled /dashboard/b2b-member/nda in 444ms (527 modules)
+ ✓ Compiled /dashboard/b2b-member/data-rooms in 330ms (533 modules)
+ GET /login 200 in 175ms
